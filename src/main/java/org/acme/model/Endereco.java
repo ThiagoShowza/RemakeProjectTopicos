@@ -7,9 +7,11 @@ import lombok.Setter;
 @Setter
 public class Endereco extends DefaultEntity {
 
-    private Usuario nomeUsuario;
+    private Usuario usuario;
+    private Cidade cidade;
+    private Long cep;
     private String bairro;
     private String quadra;
     private String rua;
-    private long numero;
+    private Long numero;
 }
