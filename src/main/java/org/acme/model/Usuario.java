@@ -10,7 +10,7 @@ import lombok.Setter;
 public class Usuario extends DefaultEntity {
 
     private String nome;
-    private String userName;
+    private String login;
     private String senha;
     private Perfil perfil;
 

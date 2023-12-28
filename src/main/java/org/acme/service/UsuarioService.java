@@ -9,11 +9,13 @@ import jakarta.validation.Valid;
 
 public interface UsuarioService {
 
-    public UsuarioResponseDTO insert(@Valid UsuarioDTO usuario);
+    public UsuarioResponseDTO insert(@Valid UsuarioDTO dto);
 
     public UsuarioResponseDTO update(UsuarioDTO dto, Long id);
 
     public void delete(Long id);
+
+    public UsuarioResponseDTO findByLoginAndSenha(String login, String senha);
 
     public UsuarioResponseDTO findById(Long id);
 

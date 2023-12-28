@@ -14,7 +14,6 @@ public class DefaultEntity {
     // sequencial
     private Long id;
 
-    
     public Long getId() {
         return id;
     }
