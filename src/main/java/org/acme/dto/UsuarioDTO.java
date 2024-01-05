@@ -1,7 +1,8 @@
 package org.acme.dto;
 
 public record UsuarioDTO (
-    String userName,
+    String nome,
+    String login,
     String senha,
     Integer idPerfil
 ){
