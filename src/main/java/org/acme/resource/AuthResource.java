@@ -20,11 +20,12 @@ import jakarta.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class AuthResource {
-    
+
     @Inject
     UsuarioService service;
 
-    @Inject HashService hashService;
+    @Inject
+    HashService hashService;
 
     @Inject
     JwtService jwtService;
@@ -32,8 +33,8 @@ public class AuthResource {
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
     @POST
-    public Response login(@Valid LoginDTO dto){
-        
+    public Response login(@Valid LoginDTO dto) {
+
         LOG.infof("Iniciando a autenticação do %s", dto.login());
 
         String hashSenha = hashService.getHashSenha(dto.senha());
@@ -44,18 +45,17 @@ public class AuthResource {
 
         UsuarioResponseDTO result = service.findByLoginAndSenha(dto.login(), hashSenha);
 
-        if(result != null)
+        if (result != null)
             LOG.info("Login e senha corretos");
-            else
+        else
             LOG.info("Login e senha incorretos");
 
-            String token = jwtService.generateJwt(result);
+        String token = jwtService.generateJwt(result);
 
-            LOG.info("Finalizando o processo de login");
+        LOG.info("Finalizando o processo de login");
 
-            return Response.ok().header("Authorization", token).build();
+        return Response.ok().header("Authorization", token).build();
 
     }
-    
 
 }

@@ -70,7 +70,7 @@ public class UsuarioResource {
     }
 
     @GET
-    @Path("List All")
+    @Path("/search/ListAll")
     public Response findByAll(){
         return Response.ok(service.findByAll()).build();
     }

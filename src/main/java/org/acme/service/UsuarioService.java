@@ -5,11 +5,11 @@ import java.util.List;
 import org.acme.dto.UsuarioDTO;
 import org.acme.dto.UsuarioResponseDTO;
 
-import jakarta.validation.Valid;
+// import jakarta.validation.Valid;
 
 public interface UsuarioService {
 
-    public UsuarioResponseDTO insert(@Valid UsuarioDTO dto);
+    public UsuarioResponseDTO insert(UsuarioDTO dto);
 
     public UsuarioResponseDTO update(UsuarioDTO dto, Long id);
 

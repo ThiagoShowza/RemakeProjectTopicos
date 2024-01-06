@@ -15,6 +15,7 @@ import org.acme.validation.ValidationException;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.NotFoundException;
 
@@ -31,6 +32,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     JsonWebToken jwt;
 
     @Override
+    @Transactional
     public UsuarioResponseDTO insert(@Valid UsuarioDTO dto) {
         if (repository.findByLogin(dto.login()) != null) {
             throw new ValidationException("Login", "Login já existe");
@@ -51,6 +53,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    @Transactional
     public UsuarioResponseDTO update(UsuarioDTO dto, Long id) {
     
         String loginUsuarioLogado = jwt.getSubject();
@@ -76,6 +79,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    @Transactional
     public UsuarioResponseDTO findByLoginAndSenha(String login, String senha) {
         Usuario usuario = repository.findByLoginAndSenha(login, senha);
         if (usuario == null)
