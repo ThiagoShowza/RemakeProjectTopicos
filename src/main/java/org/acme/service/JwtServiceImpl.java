@@ -15,7 +15,7 @@ public class JwtServiceImpl implements JwtService {
     private static final Duration EXPIRATION_TIME = Duration.ofHours(24);
 
     @Override
-    public String generateJwt(UsuarioResponseDTO dto){
+    public String generateJwt(UsuarioResponseDTO dto) {
         Instant now = Instant.now();
         Instant expiryDate = now.plus(EXPIRATION_TIME);
 
@@ -24,11 +24,10 @@ public class JwtServiceImpl implements JwtService {
         roles.add(dto.perfil().getLabel());
 
         return Jwt.issuer("unitins-jwt")
-        .subject(dto.login())
-        .groups(roles)
-        .expiresAt(expiryDate)
-        .sign();
+                .subject(dto.login())
+                .groups(roles)
+                .expiresAt(expiryDate)
+                .sign();
     }
 
-    
 }

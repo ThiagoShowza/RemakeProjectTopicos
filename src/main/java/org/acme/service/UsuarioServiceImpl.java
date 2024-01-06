@@ -33,9 +33,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public UsuarioResponseDTO insert(@Valid UsuarioDTO dto) {
+    public UsuarioResponseDTO insert(@Valid UsuarioDTO dto) { //VERIFICAR PRA QUE SERVE ESSE "@Valid"
         if (repository.findByLogin(dto.login()) != null) {
-            throw new ValidationException("Login", "Login já existe");
+            throw new ValidationException("login", "Login já existe");
 
         }
 
